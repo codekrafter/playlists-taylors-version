@@ -2,15 +2,24 @@
 
 <div class="page-content">
   <div *ngIf="loggedIn; else login">
-      <h1>Get Started</h1>
-      <button mat-raised-button color="accent" routerLink="select"> Choose Paylist</button>
+    <h1>Welcome! to Paylists (Taylor's Version)</h1>
+    <h2>
+      Easily replace old versions of Taylor's songs with Taylor's Version!
+    </h2>
+    <button mat-raised-button color="accent" routerLink="select">
+      Get Started
+    </button>
   </div>
   <ng-template #login>
     <div class="login">
       <h1 class="mat-h1">Welcome! to Paylists (Taylor's Version)</h1>
-      <h2>Easily replace old versions of Taylor's songs with Taylor's Version!</h2>
+      <h2>
+        Easily replace old versions of Taylor's songs with Taylor's Version!
+      </h2>
       <br />
-      <button mat-raised-button color="primary" routerLink="/login">Login with Spotify</button>
+      <button mat-raised-button color="primary" routerLink="/login">
+        Login with Spotify
+      </button>
     </div>
   </ng-template>
 </div>
