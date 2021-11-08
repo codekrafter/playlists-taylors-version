@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+<div class="page-content">
+  <div *ngIf="!error; else errorCard">
+    <mat-spinner *ngIf="!name; else success"></mat-spinner>
+    <ng-template #success>
+      <h1>Succesfully Logged In!</h1>
+      <h4>
+        Welcome {{ name }} (Not you? click <a routerLink="/login">here</a> to
+        choose a different account)
+      </h4>
+      <br />
+      <button mat-raised-button color="primary" routerLink="/">Continue</button>
+    </ng-template>
+  </div>
+
+  <ng-template #errorCard>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>
+          There Was an Issue Logging In With Your Spotify Account
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>
+          {{ error }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <a mat-button href="/login">Try again</a>
+      </mat-card-actions>
+    </mat-card>
+  </ng-template>
+</div>

@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+
+<div class="page-content" *ngIf="playlist !== null">
+  <div class="header">
+    <div class="button-stack stack-1">
+      <button mat-raised-button color="accent">Select All</button>
+      <button mat-raised-button color="accent">Select None</button>
+    </div>
+    <div class="instructions">
+      <h2>Select tracks to convert to Taylor's Version!</h2>
+    </div>
+    <div class="button-stack stack-2">
+      <button mat-raised-button color="primary">Continue</button>
+      <button mat-raised-button color="warn" routerLink="/select">Cancel</button>
+    </div>
+  </div>
+  <!-- <div class="lists"> -->
+  <mat-selection-list #list>
+    <ng-container *ngFor="let track of playlist.tracks.items">
+      <mat-list-option
+        *ngIf="{ tv: conversion.findReplacement(track.track) } as data"
+        [value]="track.track.id"
+        [disabled]="!data.tv"
+      >
+        <img
+          matListAvatar
+          [src]="track.track | bestImage"
+          alt="Album Cover Image"
+        />
+        <h3 matLine>{{ track.track.name }}</h3>
+        <p matLine>
+          <!-- <span> {{ playlist.description }} </span> -->
+          <!-- <span class="demo-2"> -- {{ message.content }} </span> -->
+        </p>
+      </mat-list-option>
+    </ng-container>
+  </mat-selection-list>
+  <div class="mid">
+    <mat-icon [inline]="true">chevron_right</mat-icon>
+  </div>
+  <mat-list>
+    <mat-list-item *ngFor="let track of output$ | async">
+      <img matListAvatar [src]="track | bestImage" alt="Album Cover Image" />
+      <h3 matLine>{{ track.name }}</h3>
+      <p matLine>
+        <!-- <span> {{ playlist.description }} </span> -->
+        <!-- <span class="demo-2"> -- {{ message.content }} </span> -->
+      </p>
+    </mat-list-item>
+  </mat-list>
+  <!-- </div> -->
+</div>

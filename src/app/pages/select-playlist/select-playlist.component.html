@@ -1,0 +1,23 @@
+<app-navbar></app-navbar>
+<div class="page-content">
+  <h1>Select Playlist to Convert</h1>
+  <mat-selection-list [multiple]="false">
+    <mat-list-option
+      *ngFor="let playlist of playlists"
+      [value]="playlist.id"
+      routerLink="/edit"
+      [queryParams]="{ id: playlist.id }"
+    >
+      <img
+        matListAvatar
+        [src]="playlist | bestImage"
+        alt="Playlist Cover Image"
+      />
+      <h3 matLine>{{ playlist.name }}</h3>
+      <p matLine>
+        <span> {{ playlist.description }} </span>
+        <!-- <span class="demo-2"> -- {{ message.content }} </span> -->
+      </p>
+    </mat-list-option>
+  </mat-selection-list>
+</div>
