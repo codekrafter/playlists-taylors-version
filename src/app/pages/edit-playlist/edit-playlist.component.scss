@@ -36,8 +36,13 @@
 
     width: 100%;
 
-    > button:not(:last-child) {
+    > *:not(:last-child) {
       margin-bottom: 5px;
+    }
+
+    > div,
+    > div > button {
+      width: 100%;
     }
   }
 

@@ -5,11 +5,11 @@ import { Playlist, Track } from '../models';
   name: 'bestImage',
 })
 export class BestImagePipe implements PipeTransform {
-  transform(value: Playlist | Track): string {
+  transform(value: Playlist | Track, reversed = true): string {
     const images = 'album' in value ? value.album.images : value.images;
 
     if (!images) return '';
 
-    return images[images.length - 1]?.url;
+    return reversed ? images[images.length - 1]?.url : images[0]?.url;
   }
 }

@@ -1,0 +1,12 @@
+<app-navbar></app-navbar>
+
+<div class="page-content" *ngIf="playlist as pl">
+  <h1>Playlist Converted!</h1>
+
+  <div class="row">
+    <img [src]="pl | bestImage: false" alt="Playlist Cover Image" />
+    <a [href]="pl.external_urls.spotify" target="_blank">
+      <h1>{{ pl.name }}</h1>
+    </a>
+  </div>
+</div>

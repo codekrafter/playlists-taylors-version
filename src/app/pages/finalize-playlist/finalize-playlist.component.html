@@ -1,1 +1,40 @@
-<p>finalize-playlist works!</p>
+<app-navbar></app-navbar>
+
+<div class="page-content">
+  <h1>Save New Playlist</h1>
+  <div class="row">
+    <mat-form-field class="name-field">
+      <mat-label>Playlist Name</mat-label>
+      <input matInput [formControl]="name" />
+    </mat-form-field>
+
+    <mat-slide-toggle
+      color="danger"
+      matTooltip="This will override your current playlist. Only select if you are sure you want to do that!"
+      [formControl]="override"
+    >
+      Override <mat-icon [inline]="true">warning</mat-icon>
+    </mat-slide-toggle>
+  </div>
+
+  <mat-list>
+    <mat-list-item *ngFor="let track of tracks">
+      <img matListAvatar [src]="track | bestImage" alt="Album Cover Image" />
+      <h3 matLine>{{ track.name }}</h3>
+    </mat-list-item>
+  </mat-list>
+
+  <div class="button-bar">
+    <button mat-raised-button color="primary" (click)="finalize()">
+      {{ override.value ? "Update" : "Create" }}
+    </button>
+    <button
+      mat-raised-button
+      color="warn"
+      routerLink="/edit"
+      [queryParams]="{ id: playlist?.id }"
+    >
+      Go Back
+    </button>
+  </div>
+</div>

@@ -16,11 +16,16 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatListModule } from '@angular/material/list';
+import { MatInputModule } from '@angular/material/input';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AuthInterceptor } from './api/auth.interceptor';
 import { SelectPlaylistComponent } from './pages/select-playlist/select-playlist.component';
 import { EditPlaylistComponent } from './pages/edit-playlist/edit-playlist.component';
 import { BestImagePipe } from './pipes/best-image.pipe';
 import { FinalizePlaylistComponent } from './pages/finalize-playlist/finalize-playlist.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FinishedComponent } from './pages/finished/finished.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +38,7 @@ import { FinalizePlaylistComponent } from './pages/finalize-playlist/finalize-pl
     EditPlaylistComponent,
     BestImagePipe,
     FinalizePlaylistComponent,
+    FinishedComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,10 @@ import { FinalizePlaylistComponent } from './pages/finalize-playlist/finalize-pl
     MatCardModule,
     MatProgressSpinnerModule,
     MatListModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
+    MatSlideToggleModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

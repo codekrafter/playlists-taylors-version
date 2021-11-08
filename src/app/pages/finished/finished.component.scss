@@ -1,0 +1,14 @@
+img {
+    $size: 150px;
+    width: $size;
+    height: $size;
+
+    margin-right: 50px;
+}
+
+.row {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}

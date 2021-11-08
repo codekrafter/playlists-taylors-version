@@ -3,18 +3,42 @@
 <div class="page-content" *ngIf="playlist !== null">
   <div class="header">
     <div class="button-stack stack-1">
-      <button mat-raised-button color="accent">Select All</button>
-      <button mat-raised-button color="accent">Select None</button>
+      <button mat-raised-button color="accent" (click)="selectAll()">
+        Select All
+      </button>
+      <button mat-raised-button color="accent" (click)="selectNone()">
+        Select None
+      </button>
     </div>
     <div class="instructions">
       <h2>Select tracks to convert to Taylor's Version!</h2>
     </div>
     <div class="button-stack stack-2">
-      <button mat-raised-button color="primary">Continue</button>
-      <button mat-raised-button color="warn" routerLink="/select">Cancel</button>
+      <div
+        matTooltip="You must select at least 1 track to convert!"
+        *ngIf="{ selected: getSelected$(list) | async } as data"
+        [matTooltipDisabled]="(data.selected?.length ?? 0) > 0"
+        matTooltipPosition="above"
+      >
+        <button
+          mat-raised-button
+          color="primary"
+          routerLink="/finalize"
+          [queryParams]="{
+            id: playlist.id,
+            converted: data.selected
+          }"
+          [disabled]="data.selected?.length === 0"
+          #continueButton
+        >
+          Continue
+        </button>
+      </div>
+      <button mat-raised-button color="warn" routerLink="/select">
+        Go Back
+      </button>
     </div>
   </div>
-  <!-- <div class="lists"> -->
   <mat-selection-list #list>
     <ng-container *ngFor="let track of playlist.tracks.items">
       <mat-list-option
@@ -48,5 +72,4 @@
       </p>
     </mat-list-item>
   </mat-list>
-  <!-- </div> -->
 </div>

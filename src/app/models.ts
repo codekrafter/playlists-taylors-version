@@ -26,4 +26,14 @@ export interface Playlist {
     href: string;
     items: { track: Track }[];
   };
+
+  external_urls: {
+    spotify: string;
+  };
+}
+
+export interface Profile {
+  display_name: string;
+  email: string;
+  id: string;
 }

@@ -9,6 +9,8 @@ import {
 import { LoginGuard } from './login.guard';
 import { CallbackComponent } from './pages/callback/callback.component';
 import { EditPlaylistComponent } from './pages/edit-playlist/edit-playlist.component';
+import { FinalizePlaylistComponent } from './pages/finalize-playlist/finalize-playlist.component';
+import { FinishedComponent } from './pages/finished/finished.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent, LoginRedirect } from './pages/login/login.component';
 import { SelectPlaylistComponent } from './pages/select-playlist/select-playlist.component';
@@ -47,11 +49,27 @@ const routes: Routes = [
       playlist: PlaylistDetailResolver,
     },
   },
+  {
+    path: 'finalize',
+    component: FinalizePlaylistComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      playlist: PlaylistDetailResolver,
+    },
+  },
+  {
+    path: 'finished',
+    component: FinishedComponent,
+    canActivate: [LoginGuard],
+    resolve: {
+      playlist: PlaylistDetailResolver,
+    },
+  },
 ];
 
 @NgModule({
   providers: [LoginRedirect],
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

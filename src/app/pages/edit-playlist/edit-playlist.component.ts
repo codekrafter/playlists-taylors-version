@@ -1,3 +1,4 @@
+import { SelectionModel } from '@angular/cdk/collections';
 import {
   AfterContentInit,
   AfterViewInit,
@@ -9,13 +10,15 @@ import {
   ViewChild,
   ViewChildren,
 } from '@angular/core';
-import { MatSelectionList } from '@angular/material/list';
-import { ActivatedRoute } from '@angular/router';
+import { MatOption } from '@angular/material/core';
+import { MatListOption, MatSelectionList } from '@angular/material/list';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   BehaviorSubject,
   filter,
   firstValueFrom,
   map,
+  Observable,
   startWith,
   Subject,
   takeUntil,
@@ -49,8 +52,6 @@ export class EditPlaylistComponent implements OnInit, AfterViewInit, OnDestroy {
         filter((p) => !!p)
       )
     );
-
-    console.log(this.playlist);
   }
 
   ngAfterViewInit(): void {
@@ -66,29 +67,56 @@ export class EditPlaylistComponent implements OnInit, AfterViewInit, OnDestroy {
         map(() => this.list.selectedOptions),
         takeUntil(this.destroyed$)
       )
-      .subscribe(async (o) => {
-        // console.log(o);
-        if (!this.playlist) return;
+      .subscribe((selected) => this.updateOutput(selected));
 
-        const selected = o.selected.map((s) => s.value);
+    this.selectAll();
+  }
 
-        this.output.next(
-          await Promise.all(
-            this.playlist.tracks.items.map(async ({ track }) => {
-              if (selected.includes(track.id)) {
-                return this.conversion
-                  .findReplacementTrack(track)
-                  .then((v) => v ?? track); // Make sure we don't end up with a null track
-              } else {
-                return Promise.resolve(track);
-              }
-            })
-          )
-        );
-      });
+  private async updateOutput(
+    selection: SelectionModel<MatListOption>
+  ): Promise<void> {
+    if (!this.playlist) return;
+
+    const selected = selection.selected.map((s) => s.value);
+
+    this.output.next(
+      await Promise.all(
+        this.playlist.tracks.items.map(async ({ track }) => {
+          if (selected.includes(track.id)) {
+            return this.conversion
+              .findReplacementTrack(track)
+              .then((v) => v ?? track); // Make sure we don't end up with a null track
+          } else {
+            return Promise.resolve(track);
+          }
+        })
+      )
+    );
   }
 
   ngOnDestroy(): void {
     this.destroyed$.next();
+  }
+
+  selectAll(): void {
+    // Select all options that are not disabled
+    this.list.options.map((o) => (o.disabled ? null : (o.selected = true)));
+    this.updateOutput(this.list.selectedOptions);
+  }
+
+  selectNone(): void {
+    this.list.deselectAll();
+    this.updateOutput(this.list.selectedOptions);
+  }
+
+  getSelected$(list: MatSelectionList): Observable<string> {
+    return list.selectionChange.pipe(
+      startWith(0),
+      map(() =>
+        list.selectedOptions.selected
+          .map((s) => 'spotify:track:' + s.value)
+          .join(',')
+      )
+    );
   }
 }

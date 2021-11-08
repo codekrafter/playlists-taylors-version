@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { ConstantPool } from '@angular/compiler';
 import { Injectable } from '@angular/core';
-import { first, firstValueFrom, from, Observable, of } from 'rxjs';
+import { firstValueFrom, from, Observable } from 'rxjs';
 import { API_BASE_URL, CLIENT_ID, REDIRECT_URI } from '../constants';
-import { Playlist, Track } from '../models';
+import { Playlist, Profile, Track } from '../models';
 import { generateRandomString } from '../utils';
 
 interface TokenDto {
@@ -55,7 +54,7 @@ export class SpotifyService {
     );
   }
 
-  async getProfile(): Promise<any> {
+  async getProfile(): Promise<Profile> {
     return await firstValueFrom(this.http.get<any>(`${API_BASE_URL}/me`));
   }
 
@@ -69,6 +68,44 @@ export class SpotifyService {
 
   getTrack(id: string): Observable<Track> {
     return this.http.get<any>(`${API_BASE_URL}/tracks/${id}`);
+  }
+
+  /**
+   * Creates a new playlist for the given user, with the given name (and optional description)
+   *
+   * If userId is undefined, it fetches the current user and uses their userId instead
+   */
+  async createPlaylist(
+    name: string,
+    description?: string,
+    userId?: string
+  ): Promise<Playlist> {
+    if (!userId) userId = await this.getProfile().then((p) => p.id);
+    // Make sure description is a valid value or undefined
+    if (!description) description = undefined;
+
+    return firstValueFrom(
+      this.http.post<any>(`${API_BASE_URL}/users/${userId}/playlists`, {
+        name,
+        description,
+      })
+    );
+  }
+
+  async populatePlaylist(id: string, uris: string[]) {
+    return firstValueFrom(
+      this.http.put<any>(`${API_BASE_URL}/playlists/${id}/tracks`, {
+        uris,
+      })
+    );
+  }
+
+  async updatePlaylist(id: string, name: string) {
+    return firstValueFrom(
+      this.http.put<any>(`${API_BASE_URL}/playlists/${id}`, {
+        name,
+      })
+    );
   }
 
   async getCodeChallenge(): Promise<string> {

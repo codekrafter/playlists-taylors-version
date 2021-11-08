@@ -1,0 +1,25 @@
+.page-content {
+  justify-content: start;
+}
+
+form {
+  text-align: center;
+}
+
+.name-field {
+  width: 400px;
+}
+
+.button-bar {
+  :not(:last-child) {
+    margin-right: 10px;
+  }
+}
+
+mat-slide-toggle {
+  margin-left: 20px;
+  mat-icon {
+    height: 100%;
+    vertical-align: middle;
+  }
+}
