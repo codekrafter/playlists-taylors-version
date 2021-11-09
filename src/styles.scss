@@ -24,3 +24,7 @@ app-root router-outlet + * > div.page-content {
 * {
   box-sizing: border-box;
 }
+
+img.mat-list-avatar {
+  border-radius: 0% !important;
+}

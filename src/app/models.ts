@@ -6,6 +6,7 @@ export interface Track {
 
   album: any;
   external_ids: { isrc: string };
+  external_urls: { spotify: string };
 }
 
 export interface Playlist {
