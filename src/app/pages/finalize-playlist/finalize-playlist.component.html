@@ -21,9 +21,11 @@
     <mat-list-item *ngFor="let track of tracks">
       <img matListAvatar [src]="track | bestImage" alt="Album Cover Image" />
       <h3 matLine>{{ track.name }}</h3>
-      <a matLine [href]="track.external_urls.spotify" target="_blank">
-        Play on Spotify
-      </a>
+      <p matLine>
+        <a [href]="track.external_urls.spotify" target="_blank">
+          Play on Spotify
+        </a>
+      </p>
     </mat-list-item>
   </mat-list>
 
