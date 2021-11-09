@@ -15,9 +15,11 @@
       />
       <h3 matLine>{{ playlist.name }}</h3>
 
-      <a matLine [href]="playlist.external_urls.spotify" target="_blank">
-        Play on Spotify
-      </a>
+      <p matLine>
+        <a [href]="playlist.external_urls.spotify" target="_blank">
+          Play on Spotify
+        </a>
+      </p>
     </mat-list-option>
   </mat-selection-list>
 </div>
