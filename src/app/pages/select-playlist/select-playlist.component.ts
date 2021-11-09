@@ -9,6 +9,7 @@ import { Playlist } from '../../models';
 })
 export class SelectPlaylistComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
+  readonly window = window;
 
   playlists: Playlist[] = [];
 

@@ -14,10 +14,10 @@
         alt="Playlist Cover Image"
       />
       <h3 matLine>{{ playlist.name }}</h3>
-      <p matLine>
-        <span> {{ playlist.description }} </span>
-        <!-- <span class="demo-2"> -- {{ message.content }} </span> -->
-      </p>
+
+      <a matLine [href]="playlist.external_urls.spotify" target="_blank">
+        Play on Spotify
+      </a>
     </mat-list-option>
   </mat-selection-list>
 </div>
