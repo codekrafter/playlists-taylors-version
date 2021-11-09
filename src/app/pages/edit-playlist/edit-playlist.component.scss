@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 200px 1fr;
   grid-template-rows: 2fr 8fr;
 
-  display: 100%;
+  width: 100%;
   height: 100%;
 }
 
@@ -55,21 +55,6 @@
   }
 }
 
-// .lists {
-//   display: flex;
-
-//   flex-direction: row !important;
-
-//   width: 100%;
-//   height: 100%;
-
-//   align-items: center;
-
-//   > * {
-//     width: 100%;
-//     height: min-content;
-//   }
-
 .mid {
   height: 100%;
   width: 200px;
@@ -87,7 +72,6 @@
     height: min-content;
   }
 }
-// }
 
 mat-selection-list {
   grid-column: 1 / 2;
@@ -99,7 +83,61 @@ mat-list {
   grid-row: 2 /3;
 }
 
-// ::ng-deep body {
-//   width: min-content;
-//   height: min-content;
-// }
+@media screen and (max-width: 850px) {
+  .mid,
+  mat-list {
+    display: none;
+  }
+
+  .page-content {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+  }
+
+  .header {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0 20px;
+    text-align: center;
+
+    .button-stack {
+      &.stack-1 {
+        flex-direction: row;
+        margin-top: 5px;
+        order: 3;
+
+        > button {
+          width: 100%;
+          margin: 0;
+
+          &:not(:last-child) {
+            margin-right: 5px;
+          }
+        }
+      }
+
+      &.stack-2 {
+        order: 2;
+      }
+    }
+
+    .instructions {
+      order: 1;
+    }
+  }
+
+  mat-selection-list {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+  }
+}
+
+@media screen and (min-width: 850px) and (max-width: 1100px) {
+  .page-content {
+    grid-template-columns: 400px 200px 400px;
+  }
+}
