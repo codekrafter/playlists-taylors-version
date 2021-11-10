@@ -108,6 +108,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "taylors-version:build:production",
+            "firebaseProject": "playlists-taylors-version",
+            "firebaseHostingSite": "playlists-taylors-version"
+          }
         }
       }
     }

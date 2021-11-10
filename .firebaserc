@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "playlists-taylors-version": {
+      "hosting": {
+        "taylors-version": [
+          "playlists-taylors-version"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "playlists-taylors-version"
+  }
+}
