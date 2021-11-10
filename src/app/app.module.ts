@@ -26,6 +26,14 @@ import { BestImagePipe } from './pipes/best-image.pipe';
 import { FinalizePlaylistComponent } from './pages/finalize-playlist/finalize-playlist.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FinishedComponent } from './pages/finished/finished.component';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import {
+  provideAnalytics,
+  getAnalytics,
+  ScreenTrackingService,
+} from '@angular/fire/analytics';
+import { providePerformance, getPerformance } from '@angular/fire/performance';
 
 @NgModule({
   declarations: [
@@ -56,9 +64,13 @@ import { FinishedComponent } from './pages/finished/finished.component';
     ReactiveFormsModule,
     MatTooltipModule,
     MatSlideToggleModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAnalytics(() => getAnalytics()),
+    providePerformance(() => getPerformance()),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    ScreenTrackingService,
   ],
   bootstrap: [AppComponent],
 })
