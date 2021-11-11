@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { firstValueFrom, from, Observable } from 'rxjs';
+import { concatMap, firstValueFrom, from, map, Observable } from 'rxjs';
 import { API_BASE_URL, CLIENT_ID, REDIRECT_URI } from '../constants';
 import { Playlist, Profile, Track } from '../models';
 import { generateRandomString } from '../utils';
@@ -63,7 +63,22 @@ export class SpotifyService {
   }
 
   getPlaylistDetail(id: string): Observable<Playlist> {
-    return this.http.get<any>(`${API_BASE_URL}/playlists/${id}`);
+    return this.http
+      .get<Playlist>(`${API_BASE_URL}/playlists/${id}`)
+      .pipe(concatMap((p) => (p ? this.fillPlaylistTracks(p) : p)));
+  }
+
+  private async fillPlaylistTracks(playlist: Playlist): Promise<Playlist> {
+    let next: string | null = playlist.tracks.next;
+
+    while (next) {
+      console.log(playlist.tracks);
+      const res = await firstValueFrom(this.http.get<PaginatedResponse>(next));
+      next = res.next;
+      playlist.tracks.items.push(...res.items);
+    }
+
+    return playlist;
   }
 
   getTrack(id: string): Observable<Track> {
