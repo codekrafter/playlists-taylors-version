@@ -21,7 +21,6 @@ export class LoginGuard implements CanActivate {
     const expiresAt = +sessionStorage.getItem('expires_at')!;
 
     if (!token || !expiresAt || isNaN(expiresAt) || expiresAt < Date.now()) {
-      console.log('canceling nav');
       return this.router.parseUrl('/');
     } else {
       return true;

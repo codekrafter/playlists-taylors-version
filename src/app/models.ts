@@ -26,6 +26,7 @@ export interface Playlist {
     total: number;
     href: string;
     items: { track: Track }[];
+    next: string | null;
   };
 
   external_urls: {
