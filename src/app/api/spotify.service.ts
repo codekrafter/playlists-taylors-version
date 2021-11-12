@@ -72,7 +72,6 @@ export class SpotifyService {
     let next: string | null = playlist.tracks.next;
 
     while (next) {
-      console.log(playlist.tracks);
       const res = await firstValueFrom(this.http.get<PaginatedResponse>(next));
       next = res.next;
       playlist.tracks.items.push(...res.items);

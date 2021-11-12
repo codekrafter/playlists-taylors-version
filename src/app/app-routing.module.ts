@@ -1,13 +1,10 @@
-import { Component, InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {
-  CLIENT_ID,
-  LOGIN_REDIRECT,
-  OAUTH_SCOPE,
-  REDIRECT_URI,
-} from './constants';
+import { environment } from '../environments/environment';
+import { LOGIN_REDIRECT } from './constants';
 import { LoginGuard } from './login.guard';
 import { CallbackComponent } from './pages/callback/callback.component';
+import { DevHelperComponent } from './pages/dev-helper/dev-helper.component';
 import { EditPlaylistComponent } from './pages/edit-playlist/edit-playlist.component';
 import { FinalizePlaylistComponent } from './pages/finalize-playlist/finalize-playlist.component';
 import { FinishedComponent } from './pages/finished/finished.component';
@@ -67,9 +64,19 @@ const routes: Routes = [
   },
 ];
 
+if (!environment.production) {
+  routes.push({
+    path: 'dev',
+    component: DevHelperComponent,
+    resolve: {
+      playlist: PlaylistDetailResolver,
+    },
+  });
+}
+
 @NgModule({
   providers: [LoginRedirect],
-  imports: [RouterModule.forRoot(routes, { enableTracing: false })],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
