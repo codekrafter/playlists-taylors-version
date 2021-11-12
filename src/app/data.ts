@@ -35,31 +35,29 @@ export const MUSIC_MAP: Record<string, string> = {
   USCJY0903616: 'spotify:track:2JoJrsEV15OzbijS47lids', // Today Was A Fairytale - US Version
 
   // To: Red (Taylor's Version) (pending release)
-  //   // From: Red (Deluxe Edition)
-  //   USCJY1231019: '', // State Of Grace
-  //   USCJY1231020: '', // Red
-  //   USCJY1231038: '', // Treacherous
-  //   USCJY1231039: '', // I Knew You Were Trouble.
-  //   USCJY1231021: '', // All Too Well
-  //   USCJY1231040: '', // 22
-  //   USCJY1231026: '', // I Almost Do
-  //   USCJY1231018: '', // We Are Never Ever Getting Back Together
-  //   USCJY1231023: '', // Stay Stay Stay
-  //   USCJY1231041: '', // The Last Time
-  //   USCJY1231042: '', // Holy Ground
-  //   USCJY1231024: '', // Sad Beautiful Tragic
-  //   USCJY1231043: '', // The Lucky One
-  //   USCJY1231044: '', // Everything Has Changed
-  //   USCJY1231022: '', // Starlight
-  //   USCJY1231045: '', // Begin Again
-  //   USCJY1231025: '', // The Moment I Knew
-  //   USCJY1231046: '', // Come Back...Be Here
-  //   USCJY1231027: '', // Girl At Home
-  //   USCJY1231047: '', // Treacherous - Original Demo Recording
-  //   USCJY1231048: '', // Red - Original Demo Recording
-  //   USCJY1231049: '', // State Of Grace - Acoustic
-  //   // From: Ronan Single
-  //   USCJY1231051: '', // Ronan
+  // From: Red (Deluxe Edition)
+  USCJY1231019: 'spotify:track:6lzc0Al0zfZOIFsFvBS1ki', // State Of Grace
+  USCJY1231020: 'spotify:track:4OAuvHryIVv4kMDNSLuPt6', // Red
+  USCJY1231038: 'spotify:track:3S7HNKPakdwNEBFIVTL6dZ', // Treacherous
+  USCJY1231039: 'spotify:track:6AtZLIzUINvExIUy4QhdjP', // I Knew You Were Trouble.
+  USCJY1231021: 'spotify:track:3nsfB1vus2qaloUdcBZvDu', // All Too Well
+  USCJY1231040: 'spotify:track:3yII7UwgLF6K5zW3xad3MP', // 22
+  USCJY1231026: 'spotify:track:2r9CbjYgFhtAmcFv1cSquB', // I Almost Do
+  USCJY1231018: 'spotify:track:5YqltLsjdqFtvqE7Nrysvs', // We Are Never Ever Getting Back Together
+  USCJY1231023: 'spotify:track:7eQj6r5PIdYKEIZjucBMcq', // Stay Stay Stay
+  USCJY1231041: 'spotify:track:0y6kdSRCVQhSsHSpWvTUm7', // The Last Time
+  USCJY1231042: 'spotify:track:7J4b3LVCIGO4CMBDFLPoP6', // Holy Ground
+  USCJY1231024: 'spotify:track:73qMN9bXy7MSPwwGfH3wQr', // Sad Beautiful Tragic
+  USCJY1231043: 'spotify:track:4e5ayHsOLJNLTGfjau2mEw', // The Lucky One
+  USCJY1231044: 'spotify:track:7qEUFOVcxRI19tbT68JcYK', // Everything Has Changed
+  USCJY1231022: 'spotify:track:7A2cNLRT0YJc1yjxHlKihs', // Starlight
+  USCJY1231045: 'spotify:track:05GsNucq8Bngd9fnd4fRa0', // Begin Again
+  USCJY1231025: 'spotify:track:0NRHj8hDwwmSPaA41o379r', // The Moment I Knew
+  USCJY1231046: 'spotify:track:4pNApnaUWAL2J4KO2eqokq', // Come Back...Be Here
+  USCJY1231027: 'spotify:track:0DMVrlMUn01M0IcpDbwgu7', // Girl At Home
+  USCJY1231049: 'spotify:track:5jAIouBES8LWMiriuNq170', // State Of Grace - Acoustic
+  // From: Ronan Single
+  USCJY1231051: 'spotify:track:7nWui6jiMM2m9qFmET1Mtj', // Ronan
 
   // To: 1989 (Taylor's Version) (eventually...)
   USCJY1431379: 'spotify:track:1Ov37jtRQ2YNAe8HzfczkL', // Wildest Dreams

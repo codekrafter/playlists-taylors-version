@@ -34,6 +34,7 @@ import {
   ScreenTrackingService,
 } from '@angular/fire/analytics';
 import { providePerformance, getPerformance } from '@angular/fire/performance';
+import { DevHelperComponent } from './pages/dev-helper/dev-helper.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { providePerformance, getPerformance } from '@angular/fire/performance';
     BestImagePipe,
     FinalizePlaylistComponent,
     FinishedComponent,
+    DevHelperComponent,
   ],
   imports: [
     BrowserModule,
